@@ -11,10 +11,7 @@ pub fn build(b: *std.Build) void {
     });
 
     asio.installHeader(b.pathJoin(&.{ "asio", "include", "asio.hpp" }), "asio.hpp");
-    asio.installHeader(
-        b.pathJoin(&.{ "asio", "include", "asio", "system_timer.hpp" }),
-        b.pathJoin(&.{ "asio", "system_timer.hpp" }),
-    );
+    asio.installHeadersDirectory(b.pathJoin(&.{ "asio", "include", "asio" }), "asio");
     asio.defineCMacro("ASIO_STANDALONE", "1");
     asio.defineCMacro("ASIO_SEPARATE_COMPILATION", "1");
     asio.addCSourceFile(.{
